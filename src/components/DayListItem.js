@@ -9,8 +9,8 @@ export default function DayListItem(props) {
     "day-list__item--selected": selected,
     "day-list__item--full": (spots === 0),
   });
+  console.log('props:', props)
 
-  const clickHandler = () => setDay(name);
   const formatSpots = () => {
     if (spots === 0) {
       return "no spots";
@@ -22,7 +22,7 @@ export default function DayListItem(props) {
   }
 
   return (
-    <li onClick={clickHandler} className={dayClass}>
+    <li onClick={setDay} className={dayClass}>
       <h2 className="text--regular">{ name }</h2>
       <h3 className="text--light">{ formatSpots() } remaining</h3>
     </li>
