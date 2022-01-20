@@ -13,8 +13,8 @@ export default function Form(props) {
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            value=""
-            onChange={event => event.target.value}
+            value="Lorenço"
+            onChange={event => console.log(event.target.value)}
           />
         </form>
         <InterviewerList
