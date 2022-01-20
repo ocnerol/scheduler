@@ -23,8 +23,8 @@ export default function Form(props) {
         </form>
         <InterviewerList
         interviewers={interviewers}
-        value={props.interviewer}
-        onChange={((event) => console.log(event))}
+        value={interviewer}
+        onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
