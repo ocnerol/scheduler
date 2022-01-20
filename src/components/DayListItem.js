@@ -9,7 +9,6 @@ export default function DayListItem(props) {
     "day-list__item--selected": selected,
     "day-list__item--full": (spots === 0),
   });
-  console.log('props:', props)
 
   const formatSpots = () => {
     if (spots === 0) {
