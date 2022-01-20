@@ -89,7 +89,7 @@ export default function Application(props) {
           time={appointment.time}
           interview={appointment.interview}
           />
-        )) }
+        )).concat([lastAppointment]) }
       </section>
     </main>
   );
