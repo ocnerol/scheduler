@@ -86,8 +86,7 @@ export default function Application(props) {
         { appointments.map(appointment => (
           <Appointment
           key={appointment.id}
-          time={appointment.time}
-          interview={appointment.interview}
+          {...appointment}
           />
         )).concat([lastAppointment]) }
       </section>
