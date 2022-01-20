@@ -40,7 +40,11 @@ storiesOf("DayListItem", module)
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
   .add("full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={() => action("setDay")("Tuesday")} spots={5} />
+    <DayListItem
+      name="Tuesday"
+      setDay={() => action("setDay")("Tuesday")}
+      spots={5}
+    />
   ));
 
 const days = [
@@ -132,13 +136,26 @@ storiesOf("InterviewerList", module)
     />
   ));
 
-  storiesOf("Appointment", module)
+storiesOf("Appointment", module)
   .addParameters({
-    backgrounds: [{ name: "white", value: "#fff", default: true }]
+    backgrounds: [{ name: "white", value: "#fff", default: true }],
   })
   .add("Appointment", () => <Appointment />)
   .add("Appointment with Time", () => <Appointment time="12pm" />)
-  .add("Header", () => <Header time="12pm"/>)
-  .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
-  .add("Show", () => <Show student="Lydia Miller-Jones" interviewer={interviewer.name} onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
-  .add("Confirm", () => <Confirm message="Delete the appointment?" onConfirm={action("onConfirm")} onCancel={action("onCancel")}/>)
+  .add("Header", () => <Header time="12pm" />)
+  .add("Empty", () => <Empty onAdd={action("onAdd")} />)
+  .add("Show", () => (
+    <Show
+      student="Lydia Miller-Jones"
+      interviewer={interviewer.name}
+      onEdit={action("onEdit")}
+      onDelete={action("onDelete")}
+    />
+  ))
+  .add("Confirm", () => (
+    <Confirm
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
+    />
+  ));
