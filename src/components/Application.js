@@ -49,6 +49,12 @@ const lastAppointment = <Appointment key="last" time="5pm" />;
 export default function Application(props) {
   const [days, setDays] = useState([]);
   const [day, setDay] = useState("Monday");
+
+  useEffect(() => {
+    axios.get('/api/days')
+    .then(response => setDays(response.data))
+    .catch(error => console.log(error))
+  }, [])
   return (
     <main className="layout">
       <section className="sidebar">
