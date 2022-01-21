@@ -12,9 +12,6 @@ export function getAppointmentsForDay(state, day) {
     return [];
   }
 
-  // go through foundAppointments array
-  // for each element, replace it with the state.appointments[element]
-  foundAppointments = foundAppointments.map(index => index.toString());
   foundAppointments = foundAppointments.map(index => appointments[index]);
   return foundAppointments;
 }
