@@ -8,9 +8,6 @@ import "components/Application.scss";
 const lastAppointment = <Appointment key="last" time="5pm" />;
 
 export default function Application(props) {
-  // const [days, setDays] = useState([]);
-  // const [day, setDay] = useState("Monday");
-  // const [appointments, setAppointments] = useState({});
   const [state, setState] = useState({
     day: "Monday",
     days: [],
