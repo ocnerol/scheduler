@@ -4,7 +4,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 
 import "components/Application.scss";
-import getAppointmentsForDay from "helpers/selectors";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 const lastAppointment = <Appointment key="last" time="5pm" />;
 
