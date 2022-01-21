@@ -4,7 +4,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 
 import "components/Application.scss";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 const lastAppointment = <Appointment key="last" time="5pm" />;
 
@@ -16,6 +16,18 @@ export default function Application(props) {
     interviewers: {}
   })
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const schedule = dailyAppointments.map(appointment => {
+    const interview = getInterview(state, appointment.interview); 
+
+    return (
+      <Appointment 
+      key={appointment.id}
+      id={appointment.id}
+      time={appointment.time}
+      interview={interview}
+      />
+    );
+  });
 
   const setDay = day => setState(Object.assign({}, state, { day: day }))
   // const setDays = days => setState(Object.assign({}, state, { days: days }))
@@ -60,12 +72,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        { dailyAppointments.map(appointment => (
-          <Appointment
-          key={appointment.id}
-          {...appointment}
-          />
-        )).concat([lastAppointment]) }
+        { schedule }
       </section>
     </main>
   );
