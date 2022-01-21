@@ -25,15 +25,18 @@ export default function Application(props) {
   useEffect(() => {
     const getDays = axios.get('/days');
     const getAppointments = axios.get('/appointments');
-    const promises = [getDays, getAppointments];
+    const getInterviewers = axios.get('/interviewers');
+    const promises = [getDays, getAppointments, getInterviewers];
     
     Promise.all(promises)
     .then(resolvedArray => {
-      const [first, second] = resolvedArray;
+      const [first, second, third] = resolvedArray;
       const days = first.data;
       const appointments = second.data;
+      const interviewers = third.data;
+      console.log(interviewers);
 
-      setState(prev => ({...prev, days, appointments}));
+      setState(prev => ({...prev, days, appointments, interviewers}));
 
     })
     .catch(error => console.log(error));
