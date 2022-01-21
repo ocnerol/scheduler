@@ -15,7 +15,6 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   })
-  console.log('state.appointments ->', state.appointments)
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const setDay = day => setState(Object.assign({}, state, { day: day }))
