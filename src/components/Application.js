@@ -22,8 +22,8 @@ export default function Application(props) {
   // const setDays = days => setState(prev => ({...prev, days }));
 
   useEffect(() => {
-    const getDays = axios.get('/api/days');
-    const getAppointments = axios.get('/api/appointments');
+    const getDays = axios.get('/days');
+    const getAppointments = axios.get('/appointments');
     const promises = [getDays, getAppointments];
     
     Promise.all(promises)
