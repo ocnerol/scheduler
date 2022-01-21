@@ -4,6 +4,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 
 import "components/Application.scss";
+import getAppointmentsForDay from "helpers/selectors";
 
 const lastAppointment = <Appointment key="last" time="5pm" />;
 
@@ -13,18 +14,30 @@ export default function Application(props) {
     days: [],
     appointments: {}
   })
-
-  const dailyAppointments = [];
+  console.log('state.appointments ->', state.appointments)
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const setDay = day => setState(Object.assign({}, state, { day: day }))
   // const setDays = days => setState(Object.assign({}, state, { days: days }))
-  const setDays = days => setState(prev => ({...prev, days }));
+  // const setDays = days => setState(prev => ({...prev, days }));
 
   useEffect(() => {
-    axios.get('/api/days')
-    .then(response => setDays(response.data))
-    .catch(error => console.log(error))
+    const getDays = axios.get('/api/days');
+    const getAppointments = axios.get('/api/appointments');
+    const promises = [getDays, getAppointments];
+    
+    Promise.all(promises)
+    .then(resolvedArray => {
+      const [first, second] = resolvedArray;
+      const days = first.data;
+      const appointments = second.data;
+
+      setState(prev => ({...prev, days, appointments}));
+
+    })
+    .catch(error => console.log(error));
   }, [])
+
   return (
     <main className="layout">
       <section className="sidebar">
