@@ -27,7 +27,7 @@ export default function Application(props) {
       interview={interview}
       />
     );
-  });
+  }).concat(lastAppointment);
 
   const setDay = day => setState(Object.assign({}, state, { day: day }))
   // const setDays = days => setState(Object.assign({}, state, { days: days }))
