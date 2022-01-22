@@ -29,3 +29,10 @@ export function getInterview(state, interview) {
 
   return result;
 }
+
+// return an array of interviewers (objects) available for the given day
+export function getInterviewersForDay(state, day) {
+  const foundInterviewers = [];
+
+  return foundInterviewers;
+}
