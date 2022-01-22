@@ -4,9 +4,12 @@ export default function useVisualMode(initialMode) {
   const [mode, setMode] = useState(initialMode);
   const [history, setHistory] = useState([initialMode]);
 
-  const transition = (newMode) => {
-    setMode(newMode);
+  const transition = (newMode, replace = false) => {
     const newHistory = [...history];
+    if (replace) {
+      newHistory.pop();
+    }
+    setMode(newMode);
     newHistory.push(newMode);
     setHistory(newHistory);
   };
@@ -14,7 +17,7 @@ export default function useVisualMode(initialMode) {
   const back = () => {
     const historyCopy = [...history];
     historyCopy.pop();
-    
+
     // if historyCopy, after removing an element, has AT LEAST one element left, continue
     if (historyCopy.length >= 1) {
       setHistory(historyCopy);
