@@ -7,7 +7,7 @@ export function getAppointmentsForDay(state, day) {
       foundAppointments = [...singleDay.appointments];
     }
   }
-  
+
   foundAppointments = foundAppointments.map((index) => appointments[index]);
   return foundAppointments;
 }
@@ -26,7 +26,6 @@ export function getInterview(state, interview) {
   return result;
 }
 
-// return an array of interviewers (objects) available for the given day
 export function getInterviewersForDay(state, day) {
   const { days, interviewers } = state;
 
