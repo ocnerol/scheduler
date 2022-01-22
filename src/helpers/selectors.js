@@ -32,7 +32,19 @@ export function getInterview(state, interview) {
 
 // return an array of interviewers (objects) available for the given day
 export function getInterviewersForDay(state, day) {
-  const foundInterviewers = [];
+  const { days, interviewers } = state;
 
+  let foundInterviewers = [];
+  for (const singleDay of days) {
+    if (singleDay.name === day) {
+      foundInterviewers = [...singleDay.interviewers];
+    }
+  }
+  // if no interviewers found for given day
+  if (foundInterviewers.length === 0) {
+    return [];
+  }
+
+  foundInterviewers = foundInterviewers.map((index) => interviewers[index]);
   return foundInterviewers;
 }
