@@ -7,11 +7,7 @@ export function getAppointmentsForDay(state, day) {
       foundAppointments = [...singleDay.appointments];
     }
   }
-  // if no appointments found for given day
-  if (foundAppointments.length === 0) {
-    return [];
-  }
-
+  
   foundAppointments = foundAppointments.map((index) => appointments[index]);
   return foundAppointments;
 }
@@ -39,10 +35,6 @@ export function getInterviewersForDay(state, day) {
     if (singleDay.name === day) {
       foundInterviewers = [...singleDay.interviewers];
     }
-  }
-  // if no interviewers found for given day
-  if (foundInterviewers.length === 0) {
-    return [];
   }
 
   foundInterviewers = foundInterviewers.map((index) => interviewers[index]);
