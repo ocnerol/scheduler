@@ -17,6 +17,10 @@ export default function Application(props) {
   });
   const bookInterview = (id, interview) => {
     console.log('id and interview arguments from bookInterview fn:', id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
   };
 
   const dailyInterviewers = getInterviewersForDay(state, state.day);
