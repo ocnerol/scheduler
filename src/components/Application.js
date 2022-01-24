@@ -16,7 +16,7 @@ export default function Application(props) {
     interviewers: {},
   });
   const bookInterview = (id, interview) => {
-    console.log(id, interview)
+    console.log('id and interview arguments from bookInterview fn:', id, interview);
   };
 
   const dailyInterviewers = getInterviewersForDay(state, state.day);
@@ -54,7 +54,7 @@ export default function Application(props) {
         const days = first.data;
         const appointments = second.data;
         const interviewers = third.data;
-        console.log(interviewers);
+        //console.log(interviewers);
 
         setState((prev) => ({ ...prev, days, appointments, interviewers }));
       })
