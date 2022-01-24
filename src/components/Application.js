@@ -32,7 +32,7 @@ export default function Application(props) {
           time={appointment.time}
           interview={interview}
           interviewers={dailyInterviewers}
-          bookInterview={bookInterview(appointment.id, interview)}
+          bookInterview={bookInterview}
         />
       );
     })
