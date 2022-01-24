@@ -1,14 +1,14 @@
-import React from "react";
-import "./styles.scss";
-import Header from "./Header";
-import Show from "./Show";
-import Empty from "./Empty";
-import Form from "./Form";
-import useVisualMode from "hooks/useVisualMode";
+import React from 'react';
+import './styles.scss';
+import Header from './Header';
+import Show from './Show';
+import Empty from './Empty';
+import Form from './Form';
+import useVisualMode from 'hooks/useVisualMode';
 
-const EMPTY = "EMPTY";
-const SHOW = "SHOW";
-const CREATE = "CREATE";
+const EMPTY = 'EMPTY';
+const SHOW = 'SHOW';
+const CREATE = 'CREATE';
 
 export default function Appointment(props) {
   const { time, interview, interviewers, bookInterview, id } = props;
@@ -18,15 +18,15 @@ export default function Appointment(props) {
   const save = (name, interviewer) => {
     const interview = {
       student: name,
-      interviewer
-    }
+      interviewer,
+    };
     bookInterview(id, interview)
-    .then(() => transition(SHOW))
-    .catch(err => console.log(err))
+      .then(() => transition(SHOW))
+      .catch((err) => console.log(err));
   };
 
   return (
-    <article className="appointment">
+    <article className='appointment'>
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
