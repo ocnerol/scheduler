@@ -16,7 +16,6 @@ export default function Application(props) {
     interviewers: {},
   });
   const bookInterview = (id, interview) => {
-    console.log('id and interview arguments from bookInterview fn:', id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
