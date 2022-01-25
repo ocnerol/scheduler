@@ -13,7 +13,7 @@ const CREATE = 'CREATE';
 const SAVING = "SAVING";
 
 export default function Appointment(props) {
-  const { time, interview, interviewers, bookInterview, id } = props;
+  const { time, interview, interviewers, bookInterview, id, cancelAppointment } = props;
   const initialMode = interview ? SHOW : EMPTY;
   const { mode, transition, back } = useVisualMode(initialMode);
 
@@ -36,6 +36,7 @@ export default function Appointment(props) {
         <Show
           student={interview.student}
           interviewer={interview.interviewer.name}
+          onDelete={cancelAppointment}
         />
       )}
       {mode === SAVING && <Status message={SAVING}/>}
