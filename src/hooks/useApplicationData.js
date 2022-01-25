@@ -43,14 +43,15 @@ export default function useApplicationData() {
       interview: null,
     };
 
-    const updatedAppointmentsObj = {
+    const appointments = {
       ...state.appointments,
       [id]: appointmentToUpdate,
     };
 
+    const days = updateSpots(id, 'cancel');
     return axios
       .delete(`/appointments/${id}`)
-      .then(() => setState({ ...state, updatedAppointmentsObj }));
+      .then(() => setState({ ...state, appointments, days }));
     // .catch((err) => err);
   };
 
