@@ -35,7 +35,7 @@ export default function useApplicationData() {
     // in .then you want to pass updates state days
     return axios
       .put(`appointments/${id}`, appointment)
-      .then((res) => setState({ ...state, appointments }));
+      .then((res) => setState({ ...state, appointments, days }));
     // .catch((err) => console.log(err));
   };
 
