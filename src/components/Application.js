@@ -10,31 +10,26 @@ import {
 import useApplicationData from 'hooks/useApplicationData';
 
 export default function Application(props) {
-  const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview
-  } = useApplicationData();
+  const { state, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const schedule = dailyAppointments
-    .map((appointment) => {
-      const interview = getInterview(state, appointment.interview);
+  const schedule = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
 
-      return (
-        <Appointment
-          key={appointment.id}
-          id={appointment.id}
-          time={appointment.time}
-          interview={interview}
-          interviewers={dailyInterviewers}
-          bookInterview={bookInterview}
-          cancelInterview={cancelInterview}
-        />
-      );
-    });
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+      />
+    );
+  });
 
   return (
     <main className='layout'>
@@ -57,7 +52,7 @@ export default function Application(props) {
       <section className='schedule'>
         {schedule}
         <Appointment key='last' time='5pm' />
-        </section>
+      </section>
     </main>
   );
 }
