@@ -25,13 +25,13 @@ export default function Appointment(props) {
   const initialMode = interview ? SHOW : EMPTY;
   const { mode, transition, back } = useVisualMode(initialMode);
 
-  const save = (name, interviewer) => {
+  const save = (name, interviewer, edit) => {
     transition(SAVING);
     const interview = {
       student: name,
       interviewer,
     };
-    bookInterview(id, interview)
+    bookInterview(id, interview, edit)
       .then(() => transition(SHOW))
       .catch((err) => transition(ERROR_SAVE, true));
   };
@@ -62,6 +62,7 @@ export default function Appointment(props) {
           interviewer={interview.interviewer.id}
           onSave={save}
           onCancel={() => back()}
+          edit={true}
         />
       )}
       {mode === SAVING && <Status message={SAVING} />}
@@ -78,6 +79,7 @@ export default function Appointment(props) {
           interviewers={interviewers}
           onSave={save}
           onCancel={() => back()}
+          edit={false}
         />
       )}
       {mode === ERROR_DELETE && <Error message={ERROR_DELETE} onClose={() => back()}/>}
