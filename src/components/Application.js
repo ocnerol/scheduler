@@ -33,7 +33,7 @@ export default function Application(props) {
     return axios
       .put(`appointments/${id}`, appointment)
       .then((res) => setState({ ...state, appointments }))
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
   };
 
   const cancelInterview = (id) => {
@@ -58,7 +58,7 @@ export default function Application(props) {
     return axios
       .delete(`/appointments/${id}`)
       .then(() => setState({ ...state, updatedAppointmentsObj }))
-      .catch((err) => console.log(err));
+      // .catch((err) => err);
   };
 
   const dailyInterviewers = getInterviewersForDay(state, state.day);
