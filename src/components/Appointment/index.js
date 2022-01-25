@@ -48,6 +48,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === SAVING && <Status message={SAVING}/>}
+      {mode === DELETING && <Status message={DELETING} />}
       {mode === CREATE && (
         <Form
           interviewers={interviewers}
