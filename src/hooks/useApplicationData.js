@@ -9,6 +9,16 @@ export default function useApplicationData() {
     interviewers: {},
   });
 
+  const updateSpots = (appointmentID, change) => {
+    const days = [...state.days]
+    for (const day of days) {
+      if (day.appointments.includes(appointmentID)) {
+        day.spots = (change === 'book' ? day.spots - 1 : day.spots + 1);
+        return days;
+      }
+    }
+  }
+
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -19,20 +29,8 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
-    // update state.days
-    // for each day, check if day.appointments[id] (if the appointment belongs to that day)
-    // if it does, then update state.days.spots to decrease by 1 (booking a new appt)
-    const days = [...state.days]
+    const days = updateSpots(id, 'book');
 
-    for (const day of days) {
-      if (day.appointments.includes(id)) {
-        day.spots = day.spots - 1;
-        break;
-      }
-    }
-    
-
-    // in .then you want to pass updates state days
     return axios
       .put(`appointments/${id}`, appointment)
       .then((res) => setState(prev => ({ ...prev, appointments, days })));
