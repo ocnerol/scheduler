@@ -34,7 +34,6 @@ export default function useApplicationData() {
     return axios
       .put(`appointments/${id}`, appointment)
       .then((res) => setState(prev => ({ ...prev, appointments, days })));
-    // .catch((err) => console.log(err));
   };
 
   const cancelInterview = (id) => {
@@ -52,7 +51,6 @@ export default function useApplicationData() {
     return axios
       .delete(`/appointments/${id}`)
       .then(() => setState({ ...state, appointments, days }));
-    // .catch((err) => err);
   };
 
   const setDay = (day) => setState(Object.assign({}, state, { day: day }));
