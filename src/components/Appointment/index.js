@@ -17,6 +17,7 @@ const DELETING = 'Deleting';
 const CONFIRM = 'CONFIRM';
 const EDIT = 'EDIT';
 const ERROR_DELETE = 'There was an error deleting your appointment. Please try again.'
+const ERROR_SAVE = 'There was an error saving your appointment. Please try again';
 
 export default function Appointment(props) {
   const { time, interview, interviewers, bookInterview, id, cancelInterview } =
@@ -32,7 +33,7 @@ export default function Appointment(props) {
     };
     bookInterview(id, interview)
       .then(() => transition(SHOW))
-      .catch((err) => console.log(err));
+      .catch((err) => transition(ERROR_SAVE, true));
   };
 
   const onDelete = () => {
@@ -80,6 +81,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === ERROR_DELETE && <Error message={ERROR_DELETE} onClose={() => back()}/>}
+      {mode === ERROR_SAVE && <Error message={ERROR_SAVE} onClose={() => back()}/>}
     </article>
   );
 }
