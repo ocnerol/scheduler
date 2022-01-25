@@ -36,6 +36,31 @@ export default function Application(props) {
       .catch((err) => console.log(err));
   };
 
+  const cancelInterview = (id) => {
+    // create new appointment variable that copies the appointment with the same id in state.appointments[id]
+    // set interview: null
+    const appointmentToUpdate = {
+      ...state.appointments[id],
+      interview: null,
+    };
+
+    // create new appointments variable
+    // copies state.appointments
+    // [id]: appointment (variable created in prev step)
+    const updatedAppointmentsObj = {
+      ...state.appointments,
+      [id]: appointmentToUpdate,
+    };
+
+    // make axios delete request to /appointments/{id}
+    // then set
+
+    return axios
+      .delete(`/appointments/${id}`)
+      .then(() => setState({ ...state, updatedAppointmentsObj }))
+      .catch((err) => console.log(err));
+  };
+
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const schedule = dailyAppointments
