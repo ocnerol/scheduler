@@ -10,8 +10,6 @@ import {
   getInterviewersForDay,
 } from 'helpers/selectors';
 
-const lastAppointment = <Appointment key='last' time='5pm' />;
-
 export default function Application(props) {
   const [state, setState] = useState({
     day: 'Monday',
@@ -78,8 +76,7 @@ export default function Application(props) {
           cancelInterview={cancelInterview}
         />
       );
-    })
-    .concat(lastAppointment);
+    });
 
   const setDay = (day) => setState(Object.assign({}, state, { day: day }));
 
@@ -119,7 +116,10 @@ export default function Application(props) {
           alt='Lighthouse Labs'
         />
       </section>
-      <section className='schedule'>{schedule}</section>
+      <section className='schedule'>
+        {schedule}
+        <Appointment key='last' time='5pm' />
+        </section>
     </main>
   );
 }
