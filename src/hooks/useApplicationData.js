@@ -19,6 +19,20 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
+    // update state.days
+    // for each day, check if day.appointments[id] (if the appointment belongs to that day)
+    // if it does, then update state.days.spots to decrease by 1 (booking a new appt)
+    const days = [...state.days]
+
+    for (const day of days) {
+      if (day.appointments.includes(id)) {
+        day.spots = day.spots - 1;
+        break;
+      }
+    }
+    
+
+    // in .then you want to pass updates state days
     return axios
       .put(`appointments/${id}`, appointment)
       .then((res) => setState({ ...state, appointments }));
