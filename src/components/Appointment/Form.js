@@ -32,6 +32,7 @@ export default function Form(props) {
             value={student}
             onChange={event => setStudent(event.target.value)}
             onSubmit={(event) => event.preventDefault()}
+            data-testid="student-name-input"
           />
         </form>
         <InterviewerList
