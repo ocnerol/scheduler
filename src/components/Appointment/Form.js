@@ -43,6 +43,7 @@ export default function Form(props) {
             onSubmit={(event) => event.preventDefault()}
             data-testid="student-name-input"
           />
+          <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList
         interviewers={interviewers}
