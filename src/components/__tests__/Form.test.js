@@ -104,7 +104,7 @@ describe('Form', () => {
   });
 
   it("renders with initial student name", () => {
-    const { getByTestId } = render(<Form interviewers={interviewers}/>);
+    const { getByTestId } = render(<Form student={"Lydia Miller-Jones"} interviewers={interviewers}/>);
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
 });
