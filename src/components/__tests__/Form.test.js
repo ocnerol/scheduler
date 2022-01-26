@@ -147,4 +147,36 @@ describe('Form', () => {
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(onSave).toHaveBeenCalledWith('Lydia Miller-Jones', null);
   });
+
+  it.only("calls onCancel and resets the input field", () => {
+    const onCancel = jest.fn();
+    const { getByText, getByPlaceholderText, queryByText } = render(
+      <Form
+        interviewers={interviewers}
+        student="Lydia Mill-Jones"
+        onSave={jest.fn()}
+        onCancel={onCancel}
+      />
+    );
+  
+    // ensures Save functionality works and input field has a value
+    // necessary because this test, like all others, is independent
+    fireEvent.click(getByText("Save"));
+
+    // the next two fireEvents resemble UX where upon typing in the input field, they then hit cancel
+    fireEvent.change(getByPlaceholderText("Enter Student Name"), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+  
+    fireEvent.click(getByText("Cancel"));
+
+    // this is part of the save functionality tested by the first fireEvent in this test
+    expect(queryByText(/student name cannot be blank/i)).toBeNull();
+  
+    // this part depends on the change event and the save functionality to be working so the input field
+    // actually has a value and the cancel button clears it
+    expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
+  
+    expect(onCancel).toHaveBeenCalledTimes(1);
+  });
 });
