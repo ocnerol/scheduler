@@ -12,13 +12,11 @@ export default function Form(props) {
   const reset = () => {
     setStudent('');
     setInterviewer(null);
-    return null;
   };
 
   const cancel = () => {
     reset();
     onCancel();
-    return null;
   };
 
   const validate = () => {
