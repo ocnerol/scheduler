@@ -10,14 +10,16 @@ export default function useApplicationData() {
   });
 
   const updateSpots = (appointmentID, change) => {
-    const days = [...state.days]
+    const days = [...state.days];
     for (const day of days) {
       if (day.appointments.includes(appointmentID)) {
-        day.spots = (change === 'book' ? day.spots - 1 : day.spots + 1);
+        const dayCopy = { ...day };
+        dayCopy.spots = change === 'book' ? dayCopy.spots - 1 : dayCopy.spots + 1;
+        days[days.indexOf(day)] = dayCopy;
         return days;
       }
     }
-  }
+  };
 
   const bookInterview = (id, interview, edit) => {
     const appointment = {
@@ -33,7 +35,7 @@ export default function useApplicationData() {
 
     return axios
       .put(`appointments/${id}`, appointment)
-      .then((res) => setState(prev => ({ ...prev, appointments, days })));
+      .then((res) => setState((prev) => ({ ...prev, appointments, days })));
   };
 
   const cancelInterview = (id) => {
