@@ -14,7 +14,8 @@ export default function useApplicationData() {
     for (const day of days) {
       if (day.appointments.includes(appointmentID)) {
         const dayCopy = { ...day };
-        dayCopy.spots = change === 'book' ? dayCopy.spots - 1 : dayCopy.spots + 1;
+        dayCopy.spots =
+          change === 'book' ? dayCopy.spots - 1 : dayCopy.spots + 1;
         days[days.indexOf(day)] = dayCopy;
         return days;
       }
