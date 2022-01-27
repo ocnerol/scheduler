@@ -10,6 +10,7 @@ export default function useApplicationData() {
   });
 
   const updateSpots = (appointmentID, change) => {
+    // change argument is a string; either 'book' or 'cancel'; determines whether to increment/decrement spots
     const days = [...state.days];
     for (const day of days) {
       if (day.appointments.includes(appointmentID)) {
