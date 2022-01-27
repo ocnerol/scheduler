@@ -13,9 +13,10 @@ The app has been designed to support small and large screens, so you can schedul
 ### Check back soon for new features!
 <br/>
 
-# Walkthrough
+## Walkthrough
+![Walkthrough of App](https://github.com/ocnerol/scheduler/blob/main/docs/ezgif.com-gif-maker.gif?raw=true)
 
-## Getting Started
+# Getting Started
 
 1. Fork this repository and clone your forked repository onto your local device.
 2. Install dependencies with `npm install` on the command line.
