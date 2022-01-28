@@ -44,9 +44,8 @@ describe('Form', () => {
 
   it('can successfully save after trying to submit an empty student name', () => {
     const onSave = jest.fn();
-    const { getByText, getByPlaceholderText, queryByText, getByAltText } = render(
-      <Form interviewers={interviewers} onSave={onSave} />
-    );
+    const { getByText, getByPlaceholderText, queryByText, getByAltText } =
+      render(<Form interviewers={interviewers} onSave={onSave} />);
 
     fireEvent.click(getByText('Save'));
 
@@ -90,4 +89,20 @@ describe('Form', () => {
     expect(getByPlaceholderText('Enter Student Name')).toHaveValue('');
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
+
+  it('validates that an interviewer has been selected', () => {
+    const onSave = jest.fn();
+    const { getByText, getByPlaceholderText } = render(
+      <Form interviewers={interviewers} onSave={onSave} />
+    );
+
+    const input = getByPlaceholderText('Enter Student Name');
+    fireEvent.change(input, { target: { value: 'Lydia Miller-Jones' } });
+
+    fireEvent.click(getByText('Save'));
+
+    expect(getByText(/You must select an interviewer/i)).toBeInTheDocument();
+    expect(onSave).not.toHaveBeenCalled();
+  });
+
 });
